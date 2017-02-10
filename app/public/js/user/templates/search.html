@@ -1,0 +1,16 @@
+<div class="find-friends" ng-controller="SearchController">
+  <div class="header">
+    <h1>Find Friends</h1>
+    <div class="friends-list">
+      <div class="friend-tile" ng-repeat="user in users">
+        <h1 class="name">
+          <a ng-href="/user/{{user._id}}" ng-bind="user.full_name"></a>
+        </h1>
+        <div class="info">
+          <h1 class="no-stories" ng-bind="'has ' + user.no_stories + ' stories to tell'"></h1>
+          <h1 class="popularity"><i class="fa fa-heart"></i> 50%</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

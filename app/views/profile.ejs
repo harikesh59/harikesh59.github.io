@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html ng-app="profileApp">
+  <head>
+    <meta charset="utf-8">
+    <title>BreadButter</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/user.css" media="screen">
+  </head>
+  <body ng-controller="MainController">
+    <main>
+
+      <header class="main-header fixed-top clearfix">
+        <div class="black-box pull-left">
+          <a href="/" class="logo">breadbutter</a>
+        </div>
+        <div class="gray-box pull-right logout">
+          <a href="/logout">logout</a>
+        </div>
+      </header>
+
+      <section class="main-section">
+        <div class="user-bio">
+          <div class="user-full-name">
+            <h1><%= user.full_name %></h1>
+            <span class="joined-when">joined today</span>
+          </div>
+          <% if(logged_in_user._id != user._id){ %>
+            <div class="user-follow">
+              <h1>
+                <a ng-class="{active: ifFollowingUser()}" ng-click="followUser($event)" class="fa fa-heart" href="#"></a>
+              </h1>
+            </div>
+          <% } %>
+        </div>
+        <div class="user-stats">
+          <div class="stat">
+            <h1>Created 25 stories</h1>
+          </div>
+          <div class="stat">
+            <h1>Read 15000 times</h1>
+          </div>
+          <div class="stat">
+            <h1>Reloved 40%</h1>
+          </div>
+          <div class="stat">
+            <h1>Loved By 120</h1>
+          </div>
+        </div>
+
+        <div class="user-stories">
+          <header>
+            <h1>His Stories</h1>
+          </header>
+          <div class="board">
+            <div class="board-content">
+              <div class="campaigns-list">
+                <div class="list">
+                  <div class="no-campaigns" ng-show="stories.length === 0">
+                    <h1>No stories</h1>
+                  </div>
+                  <div class="campaign-tile" ng-repeat="story in stories track by $index">
+                    <div class="follow-story">
+                      <a ng-click="followStory(story._id, $event)" ng-class="{active: ifFollowed(story._id)}" href="#"><i class="fa fa-heart"></i></a>
+                    </div>
+                    <div class="campaign-title">
+                      <a ng-href="#/show-story/{{story._id}}">
+                        <span class="big" ng-bind="getBig(story.text)"></span>
+                        <span class="small" ng-bind="getSmall(story.text)"></span>
+                      </a>
+                    </div>
+                    <div class="campaign-meta clearfix">
+                      <div class="campaign-details">
+                        <div class="campaign-constituency pull-left">
+                          <p>
+                            in <a ng-href="#/topic/{{story.topic._id}}/stories" ng-bind="story.topic.name"></a>
+                          </p>
+                        </div>
+                        <div class="campaign-date pull-right">
+                          <p>
+                            on <span ng-bind="getDateString(story.created_on)"></span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+    <script type="text/javascript">
+      var logged_in_user = <%- JSON.stringify(logged_in_user) %>;
+      var mainUser = <%- JSON.stringify(user) %>;
+    </script>
+    <script src="/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+      var tabs = jQuery('.board-navigator a');
+      tabs.click(function(e){
+        jQuery(e.target).parent().siblings().removeClass('active');
+        jQuery(e.target).parent().addClass('active');
+      });
+    </script>
+
+    <script src="/bower_components/angular/angular.min.js" charset="utf-8"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js" charset="utf-8"></script>
+    <script src="/js/profile/main.js" charset="utf-8"></script>
+  </body>
+</html>

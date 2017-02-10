@@ -1,0 +1,30 @@
+<div class="topic-container" ng-controller="TopicController">
+  <header>
+    <h1>Topics</h1>
+  </header>
+
+  <form ng-submit="addTopic()">
+    <div class="form-group">
+      <label for="topic-name">Name</label>
+      <input ng-model="topic.name" type="text" class="form-control" id="topic-name" placeholder="Name">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+    <a class="btn btn-default btn-primary" ng-show="isEditingTopic" ng-click="cancelEditingTopic()">Cancel</a>
+  </form>
+
+  <br>
+  <br>
+  <br>
+
+  <hr>
+
+  <ul class="topicList">
+    <li ng-repeat="topic in topics">
+      <div class="topic-actions pull-right">
+        <a ng-click="editTopic(topic)">Edit</a>
+        <a ng-click="deleteTopic(topic._id)">Remove</a>
+      </div>
+      <a href="#" ng-bind="topic.name"></a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="userApp">
+  <head>
+    <meta charset="utf-8">
+    <title>BreadButter</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/user.css" media="screen">
+  </head>
+  <body ng-controller="MainController">
+    <main>
+      <header class="main-header fixed-top clearfix">
+        <div class="black-box pull-left">
+          <a href="/" class="logo">breadbutter</a>
+        </div>
+        <div class="gray-box pull-right logout">
+          <a href="/logout">logout</a>
+        </div>
+        <div class="border-box-2 pull-right create-campaign">
+          <a href="#/create-story">create a story</a>
+        </div>
+      </header>
+
+      <section class="main-section">
+        <div class="user-bio">
+          <div class="user-full-name">
+            <h1><%= user.first_name %> <%= user.last_name %></h1>
+          </div>
+        </div>
+        <div class="board-navigator">
+          <ul>
+            <li class="active">
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <a href="#/settings">Settings</a>
+            </li>
+            <li>
+              <a href="#/analytics">Analytics</a>
+            </li>
+            <li>
+              <a href="#/search">Search</a>
+            </li>
+          </ul>
+        </div>
+        <div class="board">
+          <div class="board-content">
+            <div ng-view></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <script type="text/javascript">
+      var mainUser = <%- JSON.stringify(user) %>;
+    </script>
+    <script src="/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+      var tabs = jQuery('.board-navigator a');
+      tabs.click(function(e){
+        jQuery(e.target).parent().siblings().removeClass('active');
+        jQuery(e.target).parent().addClass('active');
+      });
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfBhLe9gOv0IJdOqcg69OfwaIJb1hRzKY"></script>
+    <script src="/bower_components/angular/angular.min.js" charset="utf-8"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js" charset="utf-8"></script>
+    <script src="/js/user/main.js" charset="utf-8"></script>
+    <script src="/js/user/controllers/main.js" charset="utf-8"></script>
+    <script src="/js/user/controllers/home.js" charset="utf-8"></script>
+    <script src="/js/user/controllers/create_story.js" charset="utf-8"></script>
+    <script src="/js/user/controllers/show_story.js" charset="utf-8"></script>
+    <script src="/js/user/controllers/show_user.js" charset="utf-8"></script>
+    <script src="/js/user/controllers/settings.js" charset="utf-8"></script>
+    <script src="/js/user/controllers/analytics.js" charset="utf-8"></script>
+    <script src="/js/user/controllers/search.js" charset="utf-8"></script>
+    <script src="/js/user/controllers/topic.js" charset="utf-8"></script>
+  </body>
+</html>

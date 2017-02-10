@@ -1,0 +1,48 @@
+<div class="edit-profile" ng-controller="SettingsController">
+  <div class="header">
+    <h1>edit profile</h1>
+  </div>
+  <div class="edit-sections">
+    <section class="clearfix">
+      <aside class="pull-left">
+        <h1>account settings</h1>
+      </aside>
+      <article class="pull-right">
+        <div class="text-input-group">
+          <input ng-change="toggleAnonymous($event)" ng-model="user.is_anonymous" type="checkbox" name="anonymous" />
+          <label>Anonymous</label>
+        </div>
+      </article>
+    </section>
+    <section class="clearfix">
+      <aside class="pull-left">
+        <h1>basic info</h1>
+      </aside>
+      <article class="pull-right">
+        <div class="text-input-group">
+          <input ng-model="user.first_name" type="text" name="first-name" />
+          <label ng-show="!user.first_name">First Name</label>
+        </div>
+        <div class="text-input-group">
+          <input ng-model="user.last_name" type="text" name="last-name" />
+          <label ng-show="!user.last_name">Last Name</label>
+        </div>
+        <div class="text-input-group">
+          <input ng-model="user.email" type="email" name="email" />
+          <label ng-show="!user.email">Email</label>
+        </div>
+      </article>
+    </section>
+    <section class="clearfix">
+      <aside class="pull-left">
+        <h1>address info</h1>
+      </aside>
+    </section>
+    <section class="clearfix">
+      <aside class="pull-left">
+        <h1>account info</h1>
+      </aside>
+      
+    </section>
+  </div>
+</div>

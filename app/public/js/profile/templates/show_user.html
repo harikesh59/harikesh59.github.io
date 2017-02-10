@@ -1,0 +1,54 @@
+<div class="campaigns-list" ng-controller="ShowUserController">
+  <div class="campaign-menu">
+    <div class="board-sub-menu">
+      <ul>
+        <li class="active">
+          <a href="#">feed</a>
+        </li>
+        <li>
+          <a href="#">my stories</a>
+        </li>
+        <li>
+          <a href="#">followed stories</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="list">
+    <div class="no-campaigns" ng-show="stories.length === 0">
+      <h1>No stories</h1>
+    </div>
+    <div class="campaign-tile" ng-repeat="story in stories track by $index">
+      <div class="campaign-description">
+        <a ng-href="#/user/{{story.author._id}}" class="by-user" href="#">
+          <div class="user-full-name">
+            Anonymous
+          </div>
+        </a>
+        <p class="description">
+          showed love to your story
+        </p>
+      </div>
+      <div class="campaign-title">
+        <a ng-href="#/show-story/{{story._id}}">
+          <span class="big" ng-bind="getBig(story.text)"></span>
+          <span class="small" ng-bind="getSmall(story.text)"></span>
+        </a>
+      </div>
+      <div class="campaign-meta clearfix">
+        <div class="campaign-details">
+          <div class="campaign-constituency pull-left">
+            <p>
+              in <a ng-href="#/topic/{{story.topic._id}}/stories" ng-bind="story.topic.name"></a>
+            </p>
+          </div>
+          <div class="campaign-date pull-right">
+            <p>
+              on <span ng-bind="getDateString(story.created_on)"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

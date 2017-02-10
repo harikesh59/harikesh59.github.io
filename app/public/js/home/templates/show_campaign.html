@@ -1,0 +1,87 @@
+<style media="screen">
+.dropdown-list {
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.dropdown-list>li>a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.show-comments{
+  cursor: pointer;
+}
+.create-campaign-window{
+  button{
+    cursor: pointer;
+  }
+}
+
+.text-input-group textarea{
+  resize: none;
+}
+</style>
+<div class="show-campaign-window" ng-controller="ShowCampaignController">
+  <div class="show-campaign">
+    <div class="campaign-tile">
+      <div class="campaign-title">
+        <h1 ng-bind="campaign.title"></h1>
+      </div>
+      <div class="campaign-description">
+        <p ng-bind="campaign.description"></p>
+      </div>
+      <div class="campaign-meta clearfix">
+        <div class="campaign-details pull-left">
+          <div class="campaign-constituency">
+            <p>
+              in <a href="#" ng-bind="campaign.constituency.name"></a>
+            </p>
+          </div>
+          <div class="campaign-category">
+            <p>
+              under <a href="#" ng-bind="campaign.category.name"></a>
+            </p>
+          </div>
+          <div class="campaign-date">
+            <p>
+              on <span ng-bind="campaign.created_on"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="comment-section">
+        <div class="comment-form">
+          <form ng-submit="createComment()">
+            <div class="text-input-group">
+              <input autocomplete="off" ng-model="comment.text" type="text" name="title" />
+              <label ng-show="!comment.title">write a comment</label>
+            </div>
+          </form>
+        </div>
+        <a class="show-comments black-box box" ng-click="showComments()">Show Comments</a>
+        <div class="comments-list" ng-show="campaign.commentsShow">
+          <div class="comment-tile" ng-repeat="c in campaign.comments">
+            <a ng-href="/user/{{c.created_by._id}}" class="comment-by" ng-bind="c.created_by.username"></a>
+            <h4 class="comment-text" ng-bind="c.text"></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

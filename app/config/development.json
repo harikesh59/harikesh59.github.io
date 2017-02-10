@@ -1,0 +1,8 @@
+{
+  "DBUrl": "mongodb://localhost:27017/breadbutter",
+  "Admin": {
+    "username": "breadbutteradmin",
+    "email": "breadbutter@admin.com",
+    "password": "testpassword"
+  }
+}

@@ -1,0 +1,71 @@
+<style media="screen">
+.dropdown-list {
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.dropdown-list>li>a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.show-comments{
+  cursor: pointer;
+}
+.create-campaign-window{
+  button{
+    cursor: pointer;
+  }
+}
+
+.text-input-group textarea{
+  resize: none;
+}
+</style>
+<div class="create-campaign-window" ng-controller="CreateCampaignController">
+  <header>
+    <h1>create a campaign</h1>
+  </header>
+  <section>
+    <form ng-submit="createCampaign()">
+      <div class="text-input-group">
+        <input autocomplete="off" ng-model="campaign.title"type="text" name="title" />
+        <label ng-show="!campaign.title">title</label>
+      </div>
+      <div class="text-input-group">
+        <textarea autocomplete="off" ng-model="campaign.description"name="description" rows="5"></textarea>
+        <label ng-show="!campaign.description">description</label>
+      </div>
+      <div class="text-input-group">
+        <input autocomplete="off" ng-keyup="getConstituencies()" ng-model="campaign.constituency.name"type="text" name="constituency" />
+        <label ng-show="!campaign.constituency.name">in constituency</label>
+        <ul ng-show="constituencies.length > 0" class="dropdown-list" id="constituency-dropdown">
+          <li ng-repeat="c in constituencies" ng-click="selectConstituency(c)"><a ng-bind="c.name"></a></li>
+        </ul>
+      </div>
+      <div class="text-input-group">
+        <input autocomplete="off" ng-keyup="getCategories()" ng-model="campaign.category.name"type="text" name="category" />
+        <label ng-show="!campaign.category.name">under category</label>
+        <ul ng-show="categories.length > 0" class="dropdown-list" id="category-dropdown">
+          <li ng-repeat="c in categories" ng-click="selectCategory(c)"><a ng-bind="c.name"></a></li>
+        </ul>
+      </div>
+      <button type="submit" class="black-box">create</button>
+    </form>
+  </section>
+</div>

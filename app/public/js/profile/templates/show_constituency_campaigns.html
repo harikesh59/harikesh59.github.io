@@ -1,0 +1,51 @@
+<div class="show-campaign-window" ng-controller="ConstituencyCampaignsController">
+  <div class="constituency-intro">
+    <header>
+      <h1>Campaigns for <span style="color: purple">{{constituency.name}}:</span></h1>
+    </header>
+    <section>
+      <div class="constituency-search">
+        <form ng-submit="searchCampaigns()">
+          <div class="text-input-group">
+            <input autocomplete="off" ng-model="query" type="text" name="q" />
+            <label ng-show="!query">search for campaigns in {{constituency.name}}</label>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+  <div class="campaigns-list" ng-controller="HomeController">
+    <div class="list">
+      <div class="no-campaigns" ng-show="campaigns.length === 0">
+        <h1>No campaigns</h1>
+      </div>
+      <div class="campaign-tile" ng-repeat="camp in campaigns track by $index">
+        <div class="campaign-title">
+          <a ng-href="#/show-campaign/{{camp._id}}" ng-bind="camp.title"></a>
+        </div>
+        <div class="campaign-description">
+          <p ng-bind="camp.description"></p>
+        </div>
+        <div class="campaign-meta clearfix">
+          <div class="campaign-details pull-left">
+            <div class="campaign-constituency">
+              <p>
+                in <a href="#" ng-bind="camp.constituency.name"></a>
+              </p>
+            </div>
+            <div class="campaign-category">
+              <p>
+                under <a href="#" ng-bind="camp.category.name"></a>
+              </p>
+            </div>
+            <div class="campaign-date">
+              <p>
+                on <span ng-bind="camp.created_on"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

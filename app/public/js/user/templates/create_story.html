@@ -1,0 +1,60 @@
+<style media="screen">
+.dropdown-list {
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.dropdown-list>li>a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.show-comments{
+  cursor: pointer;
+}
+.create-campaign-window{
+  button{
+    cursor: pointer;
+  }
+}
+
+.text-input-group textarea{
+  resize: none;
+}
+</style>
+<div class="create-campaign-window" ng-controller="CreateStoryController">
+  <header>
+    <h1>create a Story</h1>
+  </header>
+  <section>
+    <form ng-submit="createStory()">
+      <div class="text-input-group">
+        <textarea autocomplete="off" ng-model="story.text"name="text" rows="5"></textarea>
+        <label ng-show="!story.text">text</label>
+      </div>
+      <div class="text-input-group">
+        <input autocomplete="off" ng-keyup="getTopics()" ng-click="getAllTopics()" ng-model="story.topic.name"type="text" name="topic" />
+        <label ng-show="!story.topic.name">choose a topic</label>
+        <ul ng-show="topics.length > 0" class="dropdown-list" id="constituency-dropdown">
+          <li ng-repeat="t in topics" ng-click="selectTopic(t)"><a ng-bind="t.name"></a></li>
+        </ul>
+      </div>
+      <button type="submit" class="black-box">create</button>
+    </form>
+  </section>
+</div>

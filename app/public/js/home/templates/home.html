@@ -1,0 +1,46 @@
+<div class="campaigns-list" ng-controller="HomeController">
+  <div class="campaign-menu">
+    <div class="board-sub-menu">
+      <ul>
+        <li class="active">
+          <a href="#">feed</a>
+        </li>
+        <li>
+          <a href="#">my campaigns</a>
+        </li>
+        <li>
+          <a href="#">followed campaigns</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="list">
+    <div class="campaign-tile" ng-repeat="camp in campaigns track by $index">
+      <div class="campaign-title">
+        <a ng-href="#/show-campaign/{{camp._id}}" ng-bind="camp.title"></a>
+      </div>
+      <div class="campaign-description">
+        <p ng-bind="camp.description"></p>
+      </div>
+      <div class="campaign-meta clearfix">
+        <div class="campaign-details pull-left">
+          <div class="campaign-constituency">
+            <p>
+              in <a href="#" ng-bind="camp.constituency.name"></a>
+            </p>
+          </div>
+          <div class="campaign-category">
+            <p>
+              under <a href="#" ng-bind="camp.category.name"></a>
+            </p>
+          </div>
+          <div class="campaign-date">
+            <p>
+              on <span ng-bind="camp.created_on"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

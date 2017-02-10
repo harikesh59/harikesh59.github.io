@@ -1,0 +1,1114 @@
+@import "bourbon/bourbon";
+@import "normalize";
+
+*,
+*:after,
+*:before{
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+input, textarea, button{
+  border: none;
+  background: none;
+  outline: none;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0;
+}
+
+html, body, main{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+body{
+  font-family: 'Raleway';
+}
+
+
+@mixin hideElement {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@mixin showElement {
+  opacity: 1;
+  visibility: visible;
+}
+
+@mixin offsetBy($offset:0em) {
+  top: $offset;
+  left: $offset;
+  right: $offset;
+  bottom: $offset;
+}
+
+@mixin fixedContainer($offset:0em) {
+  position: fixed;
+  @include offsetBy($offset);
+}
+
+@mixin absoluteContainer($offset:0em) {
+  position: absolute;
+  @include offsetBy($offset);
+}
+
+.fixed{
+  position: fixed;
+  left: 0;
+}
+
+.fixed-top{
+  @extend .fixed;
+  top: 0;
+}
+
+.fixed-bottom{
+  @extend .fixed;
+  bottom: 0;
+}
+
+.pull-left{
+  float: left;
+}
+
+.pull-right{
+  float: right;
+}
+
+.clearfix{
+  @include clearfix;
+}
+
+
+
+.box{
+  display: block;
+  cursor: pointer;
+}
+
+.black-box{
+  @extend .box;
+
+  background-color: #000;
+  color: #fff;
+}
+
+.gray-box{
+  @extend .box;
+
+  background-color: #F0F0F0;
+  color: #000;
+}
+
+.border-box{
+  @extend .box;
+
+  border: 1px solid #000;
+  color: #000;
+}
+
+.border-box-2{
+  @extend .border-box;
+
+  border-width: 2px;
+}
+
+@mixin absoluteCenter {
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%, -50%));
+}
+
+
+.text-input-group{
+
+  position: relative;
+
+  label{
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  input[type="text"], input[type="email"], input[type="password"], textarea{
+    padding: 1em;
+    font-family: "Raleway";
+    color: #fff;
+    font-size: 16px;
+
+    &:focus + label{
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
+
+
+.main-header{
+  position: fixed;
+  z-index: 2;
+  padding: 24px;
+  width: 100%;
+  background-color: #fff;
+
+  .logo{
+    display: block;
+    font-size: 16px;
+    font-weight: 900;
+    padding: 12px;
+  }
+
+  .logout{
+    a{
+      display: block;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 14px;
+    }
+  }
+
+  .create-campaign{
+    margin-right: 32px;
+    a{
+      display: block;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 14px;
+    }
+  }
+
+  .nav-open{
+    a{
+      display: block;
+      padding: 16px;
+
+      .white-bar{
+        display: block;
+        width: 20px;
+        height: 5px;
+        background-color: #fff;
+
+        $margin-between-bars: 2px;
+
+        &:first-child{
+          margin-bottom: $margin-between-bars;
+        }
+
+        &:last-child{
+          margin-top: $margin-between-bars;
+        }
+      }
+    }
+  }
+}
+
+
+$main-bg-color: lighten(#F0F0F0, 40%);
+
+.main-section{
+  position: relative;
+  z-index: 1;
+  background-color: $main-bg-color;
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.user-bio{
+
+  padding-top: 112px;
+
+  $pic-size: 100px;
+
+  .user-pic{
+    width: $pic-size;
+    height: $pic-size;
+    margin: 0 auto;
+
+    img{
+      max-width: 100%;
+      max-height: 100%;
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .user-full-name{
+    margin-top: 16px;
+    display: inline-block;
+
+    h1{
+      font-size: 64px;
+      text-transform: lowercase;
+      font-weight: 100;
+    }
+  }
+
+  .user-constituency{
+    margin-top: 8px;
+
+    p{
+      font-size: 18px;
+      font-weight: 100;
+      a{
+        font-weight: 400;
+      }
+    }
+  }
+
+  .user-member-since{
+    margin-top: 8px;
+
+    p{
+      font-size: 18px;
+      font-weight: 100;
+      span{
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+
+.board-navigator{
+
+  margin-top: 48px;
+
+  ul{
+    @include clearfix;
+    display: inline-block;
+
+    li{
+      float: left;
+      margin-left: 64px;
+      color: #D8D8D8;
+
+      &.active{
+        color: #000;
+      }
+
+      &:first-child{
+        margin-left: 0px;
+      }
+
+      a{
+        display: block;
+        font-size: 36px;
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+
+.board{
+  margin: 36px auto 0;
+  background-color: #F0F0F0;
+  padding: 2.5% 10%;
+}
+
+
+.board-sub-menu{
+  ul{
+    @include clearfix;
+
+    li{
+      float: left;
+      margin: 0 1.25em;
+
+
+      a{
+        font-weight: 500;
+        display: block;
+        color: #BDBDBD;
+      }
+
+      &.active{
+        a{
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+.board-content{
+  margin-top: 4em;
+
+  .campaigns-list{
+    .campaign-tile{
+      margin: 30px 0;
+    }
+  }
+}
+
+
+$by-user-pic-size: 30px;
+
+
+.by-user{
+
+  .user-pic,
+  .user-full-name{
+    display: inline-block;
+  }
+
+
+  .user-full-name{
+    line-height: $by-user-pic-size;
+    font-size: 14px;
+    font-weight: 400;
+    color: purple;
+    display: block;
+    vertical-align: top;
+  }
+
+  .user-pic{
+    width: $by-user-pic-size;
+    height: $by-user-pic-size;
+    margin: 0 auto;
+
+    img{
+      max-width: 100%;
+      max-height: 100%;
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+
+}
+
+.campaign-tile{
+  background-color: #F7F7F7;
+  box-shadow: 1px 1px 2px 0px #BDBDBD;
+  padding: 24px;
+  display: block;
+  position: relative;
+
+  .follow-story{
+    position: absolute;
+    left: 50%;
+    top: -16px;
+    @include transform(translate(-50% -50%));
+
+    a{
+      i{
+        font-size: 36px;
+        color: #ccc;
+      }
+
+      &.active{
+        i{
+          color: #D0021B;
+        }
+      }
+    }
+  }
+
+  .feed-description{
+    margin-bottom: 18px;
+
+    a,p{
+      display: inline-block;
+    }
+    p{
+      vertical-align: top;
+      line-height: $by-user-pic-size;
+      font-size: 12px;
+      font-weight: 100;
+      margin-left: 14px;
+    }
+  }
+
+  .campaign-popularity{
+    margin-bottom: 32px;
+    h1{
+      font-size: 24px;
+      font-weight: 300;
+      color: red;
+      span{
+        font-weight: 500;
+      }
+    }
+  }
+
+  .campaign-title{
+    margin-bottom: 32px;
+
+    a{
+      font-weight: 400;
+      line-height: 48px;
+      .big{
+        font-size: 36px;
+      }
+      .small{
+        font-size: 18px;
+      }
+    }
+  }
+
+  .campaign-description{
+    margin-bottom: 18px;
+
+    a,p{
+      display: inline-block;
+    }
+    p{
+      vertical-align: top;
+      line-height: $by-user-pic-size;
+      font-size: 14px;
+      font-weight: 400;
+      margin-left: 8px;
+    }
+  }
+
+  .campaign-meta{
+    .campaign-actions{
+      .campaign-upvote{
+        display: inline-block;
+        a{
+          padding: 12px;
+          font-size: 10px;
+        }
+      }
+      .campaign-threads{
+        display: inline-block;
+        a{
+          padding: 12px;
+          font-size: 10px;
+        }
+      }
+    }
+
+    .campaign-details{
+      margin-top: 12px;
+      .campaign-constituency{
+        margin-bottom: 6px;
+        p{
+          font-size: 14px;
+          font-weight: 100;
+          color: #BDBDBD;
+          a{
+            font-weight: 400;
+            color: brown;
+          }
+        }
+      }
+      .campaign-category{
+        margin-bottom: 5px;
+        p{
+          font-size: 16px;
+          font-weight: 100;
+          color: #BDBDBD;
+          a{
+            font-weight: 400;
+            color: purple;
+          }
+        }
+      }
+      .campaign-date{
+        p{
+          font-size: 13px;
+          font-weight: 100;
+          color: #BDBDBD;
+          span{
+            font-weight: 400;
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.inbox{
+  position: relative;
+
+  .inner-content{
+    margin-top: 48px;
+
+
+    .inbox-board{
+      background-color: #F7F7F7;
+      padding: 24px 15%;
+      margin-top: 18px;
+
+
+
+      .message-form{
+        margin-top: 24px;
+        padding: 0 10px;
+
+        form{
+          button{
+            @include hideElement;
+          }
+
+          .text-input-group{
+            input, label{
+              font-size: 14px;
+              font-weight: 300;
+            }
+
+            input[type="text"]{
+              color: #000;
+              border-bottom: 1px solid #000;
+              width: 100%;
+            }
+          }
+        }
+
+      }
+
+
+
+      .messages-list{
+        height: 400px;
+        overflow: auto;
+        padding: 0 10px;
+
+        .message-left{
+          text-align: left;
+        }
+
+        .message-right{
+          text-align: right;
+        }
+
+        > div{
+          margin: 30px 0;
+        }
+      }
+    }
+
+    .content-header{
+      .recepient{
+
+        $by-user-pic-size: 50px;
+
+        .user-pic,
+        .user-full-name,
+        .inbox-meta{
+          display: inline-block;
+        }
+
+
+        .user-full-name,.inbox-meta{
+          line-height: $by-user-pic-size;
+          font-size: 36px;
+          font-weight: 200;
+          vertical-align: top;
+          margin-left: 8px;
+        }
+
+        .user-pic{
+          width: $by-user-pic-size;
+          height: $by-user-pic-size;
+          margin: 0 auto;
+
+          img{
+            max-width: 100%;
+            max-height: 100%;
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.message{
+  width: 200px;
+  background-color: #000;
+  padding: 12px;
+  color: #fff;
+  position: relative;
+  font-size: 10px;
+  font-weight: 300;
+  min-height: 70px;
+  // display: inline-block;
+
+  &:before{
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    top: 2px;
+    @include transform(rotate(45deg));
+  }
+
+  .time-ago{
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 6px;
+  }
+}
+
+.message-left p{
+  @extend .message;
+
+  display: inline-block;
+
+  &:before{
+    left: -5px;
+  }
+}
+
+.message-right p{
+  @extend .message;
+
+  display: inline-block;
+
+  &:before{
+    right: -5px;
+  }
+}
+
+
+
+
+.edit-profile{
+  .header{
+    h1{
+      font-size: 36px;
+      font-weight: 300;
+    }
+  }
+
+  .edit-sections{
+    margin-top: 72px;
+
+    section{
+      margin-top: 64px;
+
+      &:first-child{
+        margin-top: 0px;
+      }
+
+      aside{
+        width: 30%;
+        h1{
+          color: #BDBDBD;
+          font-size: 20px;
+          font-weight: 200;
+        }
+      }
+      article{
+        width: 70%;
+        @include clearfix;
+
+        .text-input-group{
+          float: left;
+          margin-left: 24px;
+
+          input, label{
+            font-size: 16px;
+            font-weight: 400;
+          }
+
+          input{
+            color: #000;
+            border-bottom: 1px solid #000;
+            // width: 100%;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+
+
+.create-campaign-window{
+  background-color: #F7F7F7;
+  width: 80%;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 3;
+  left: 50%;
+  @include transform(translateX(-50%));
+  padding-top: 150px;
+  padding-left: 64px;
+  padding-right: 64px;
+
+  header{
+    h1{
+      font-size: 36px;
+      font-weight: 200;
+    }
+  }
+
+  section{
+    margin-top: 48px;
+
+    form{
+      padding: 0px 24px;
+
+      button{
+        margin-top: 36px;
+        padding: 16px;
+        font-size: 18px;
+        font-family: 'Raleway';
+        font-weight: 300;
+      }
+
+      .text-input-group{
+
+        margin-top: 24px;
+
+        input, label, textarea{
+          font-size: 16px;
+          font-weight: 400;
+        }
+
+        input, textarea{
+          color: #000;
+          border-bottom: 1px solid #000;
+          width: 100%;
+        }
+
+      }
+    }
+  }
+}
+
+.show-campaign-window{
+  background-color: #F7F7F7;
+  width: 80%;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 3;
+  left: 50%;
+  @include transform(translateX(-50%));
+  padding-top: 150px;
+  padding-left: 36px;
+  padding-right: 36px;
+  overflow: auto;
+
+  header{
+    h1{
+      font-size: 36px;
+      font-weight: 200;
+    }
+  }
+
+  section{
+    margin-top: 48px;
+
+    form{
+      padding: 0px 24px;
+
+      button{
+        margin-top: 36px;
+        padding: 16px;
+        font-size: 18px;
+        font-family: 'Raleway';
+        font-weight: 300;
+      }
+
+      .text-input-group{
+
+        margin-top: 24px;
+
+        input, label, textarea{
+          font-size: 16px;
+          font-weight: 400;
+        }
+
+        input, textarea{
+          color: #000;
+          border-bottom: 1px solid #000;
+          width: 100%;
+        }
+
+      }
+    }
+  }
+}
+
+
+.show-campaign{
+  .campaign-tile{
+    box-shadow: none;
+    padding: 0;
+
+    .feed-description{
+      margin-bottom: 18px;
+
+      a,p{
+        display: inline-block;
+      }
+      p{
+        vertical-align: top;
+        line-height: $by-user-pic-size;
+        font-size: 12px;
+        font-weight: 100;
+        margin-left: 14px;
+      }
+    }
+
+    .campaign-title{
+      h1{
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 48px;
+      }
+    }
+
+    .campaign-description{
+      margin: 16px 0;
+      p{
+        font-size: 14px;
+        font-weight: 100;
+      }
+    }
+
+    .campaign-meta{
+      .campaign-actions{
+        .campaign-upvote{
+          display: inline-block;
+          a{
+            padding: 12px;
+            font-size: 10px;
+          }
+        }
+        .campaign-threads{
+          display: inline-block;
+          a{
+            padding: 12px;
+            font-size: 10px;
+          }
+        }
+      }
+
+      .campaign-details{
+        margin-top: 12px;
+        .campaign-constituency{
+          margin-bottom: 6px;
+          p{
+            font-size: 16px;
+            font-weight: 100;
+            color: #BDBDBD;
+            a{
+              font-weight: 400;
+              color: brown;
+            }
+          }
+        }
+        .campaign-category{
+          margin-bottom: 5px;
+          p{
+            font-size: 16px;
+            font-weight: 100;
+            color: #BDBDBD;
+            a{
+              font-weight: 400;
+              color: purple;
+            }
+          }
+        }
+        .campaign-date{
+          p{
+            font-size: 16px;
+            font-weight: 100;
+            color: #BDBDBD;
+            span{
+              font-weight: 400;
+              color: #000;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.comment-section{
+  .comment-form{
+    margin: 32px 0;
+    .text-input-group{
+      margin-top: 24px;
+      input, label, textarea{
+        font-size: 16px;
+        font-weight: 400;
+      }
+      input, textarea{
+        color: #000;
+        border-bottom: 1px solid #000;
+        width: 100%;
+      }
+    }
+  }
+
+  .show-comments{
+    margin: 12px 0;
+    display: inline-block;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .comments-list{
+    margin: 12px 0;
+    .comment-tile{
+      background-color: #F7F7F7;
+      box-shadow: 1px 1px 2px 0px #BDBDBD;
+      padding: 14px;
+      margin: 4px 0;
+      h4{
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 100;
+      }
+      .comment-by{
+        margin-right: 4px;
+        color: purple;
+      }
+    }
+  }
+}
+
+.no-campaigns{
+  h1{
+    font-size: 36px;
+    font-weight: 100;
+    margin: 2em;
+  }
+}
+
+.user-follow{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 32px;
+  margin-left: 12px;
+  h1{
+    a{
+      font-size: 48px;
+      color: #ddd;
+
+      &.active{
+        color: #D0021B;
+      }
+    }
+  }
+}
+
+.user-stats{
+  @include clearfix;
+  margin: 4em 0;
+  .stat{
+    width: 50%;
+    padding: 1em;
+    display: inline-block;
+    float: left;
+    margin: 0.5em 0;
+
+    h1{
+      font-size: 30px;
+      font-weight: 400;
+    }
+
+    &:nth-child(1){
+      color: #9013FE;
+    }
+    &:nth-child(2){
+      color: #ED2555;
+    }
+    &:nth-child(3){
+      color: #D0021B;
+    }
+    &:nth-child(4){
+      color: #6A0000;
+    }
+  }
+}
+
+.user-stories{
+  header{
+    h1{
+      font-weight: 300;
+      font-size: 36px;
+    }
+  }
+}
+
+
+.find-friends{
+  .header{
+    h1{
+      font-weight: 300;
+    }
+  }
+}
+
+.friends-list{
+  margin: 6em 0;
+  @include clearfix;
+}
+
+.friend-tile{
+  float: left;
+  width: 32%;
+  margin: 0.45%;
+  background-color: #F7F7F7;
+  box-shadow: 1px 1px 2px 0px #BDBDBD;
+  padding: 24px;
+  display: block;
+  position: relative;
+  height: 275px;
+
+  .name{
+    font-size: 36px;
+  }
+
+  .no-stories{
+    font-size: 24px;
+    font-weight: 400;
+    color: #BE00E3;
+    margin: 1.25em 0;
+  }
+
+  .popularity{
+    font-size: 22px;
+    font-weight: 400;
+    color: #D3000D;
+    margin: 1em 0;
+  }
+}
+
+.stats{
+  .stat{
+    margin: 2em 0;
+    h1{
+      font-size: 30px;
+      font-weight: 300;
+    }
+  }
+}

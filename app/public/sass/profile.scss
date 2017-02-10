@@ -1,0 +1,362 @@
+@import "bourbon/bourbon";
+@import "normalize";
+
+*,
+*:after,
+*:before{
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+input, textarea, button{
+  border: none;
+  background: none;
+  outline: none;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0;
+}
+
+html, body, main{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+body{
+  font-family: 'Raleway';
+}
+
+
+@mixin hideElement {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@mixin showElement {
+  opacity: 1;
+  visibility: visible;
+}
+
+@mixin offsetBy($offset:0em) {
+  top: $offset;
+  left: $offset;
+  right: $offset;
+  bottom: $offset;
+}
+
+@mixin fixedContainer($offset:0em) {
+  position: fixed;
+  @include offsetBy($offset);
+}
+
+@mixin absoluteContainer($offset:0em) {
+  position: absolute;
+  @include offsetBy($offset);
+}
+
+.fixed{
+  position: fixed;
+  left: 0;
+}
+
+.fixed-top{
+  @extend .fixed;
+  top: 0;
+}
+
+.fixed-bottom{
+  @extend .fixed;
+  bottom: 0;
+}
+
+.pull-left{
+  float: left;
+}
+
+.pull-right{
+  float: right;
+}
+
+.clearfix{
+  @include clearfix;
+}
+
+
+
+.box{
+  display: block;
+  cursor: pointer;
+}
+
+.black-box{
+  @extend .box;
+
+  background-color: #000;
+  color: #fff;
+}
+
+.gray-box{
+  @extend .box;
+
+  background-color: #F0F0F0;
+  color: #000;
+}
+
+.border-box{
+  @extend .box;
+
+  border: 1px solid #000;
+  color: #000;
+}
+
+.border-box-2{
+  @extend .border-box;
+
+  border-width: 2px;
+}
+
+@mixin absoluteCenter {
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%, -50%));
+}
+
+.main-header{
+  position: fixed;
+  z-index: 2;
+  padding-top: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  width: 100%;
+
+  .logo{
+    display: block;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 16px;
+  }
+
+  .logout{
+    display: block;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 16px;
+  }
+
+  .nav-open{
+    a{
+      display: block;
+      padding: 16px;
+
+      .white-bar{
+        display: block;
+        width: 20px;
+        height: 5px;
+        background-color: #fff;
+
+        $margin-between-bars: 2px;
+
+        &:first-child{
+          margin-bottom: $margin-between-bars;
+        }
+
+        &:last-child{
+          margin-top: $margin-between-bars;
+        }
+      }
+    }
+  }
+}
+
+
+$main-bg-color: lighten(#F0F0F0, 40%);
+
+.main-section{
+  position: relative;
+  z-index: 1;
+  background-color: $main-bg-color;
+  height: 100%;
+}
+
+.user-bio{
+
+  padding-top: 112px;
+  text-align: center;
+
+  $pic-size: 100px;
+
+  .user-pic{
+    width: $pic-size;
+    height: $pic-size;
+    margin: 0 auto;
+
+    img{
+      max-width: 100%;
+      max-height: 100%;
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .user-full-name{
+    margin-top: 16px;
+
+    h1{
+      font-size: 48px;
+      text-transform: lowercase;
+      font-weight: 100;
+    }
+  }
+
+  .user-constituency{
+    margin-top: 8px;
+
+    p{
+      font-size: 18px;
+      font-weight: 100;
+      a{
+        font-weight: 400;
+      }
+    }
+  }
+
+  .user-member-since{
+    margin-top: 8px;
+
+    p{
+      font-size: 18px;
+      font-weight: 100;
+      span{
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+
+.board{
+  width: 80%;
+  margin: 72px auto;
+  background-color: #F0F0F0;
+  padding: 2.5% 10%;
+}
+
+
+.board-sub-menu{
+  ul{
+    @include clearfix;
+
+    li{
+      float: left;
+      margin: 0 1em;
+
+      a{
+        font-weight: 500;
+        display: block;
+        color: #BDBDBD;
+      }
+
+      &.active{
+        a{
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+.board-content{
+  margin-top: 4em;
+
+  .campaigns-list{
+    .campaign-tile{
+      margin: 1em 0;
+    }
+  }
+}
+
+.campaign-tile{
+  background-color: #F7F7F7;
+  box-shadow: 1px 1px 2px 0px #BDBDBD;
+  padding: 24px;
+
+  .campaign-title{
+    margin-bottom: 32px;
+
+    h1{
+      font-size: 36px;
+      font-weight: 100;
+    }
+  }
+
+  .campaign-meta{
+    .campaign-actions{
+      .campaign-upvote{
+        display: inline-block;
+        a{
+          padding: 12px;
+          font-size: 10px;
+        }
+      }
+      .campaign-threads{
+        display: inline-block;
+        a{
+          padding: 12px;
+          font-size: 10px;
+        }
+      }
+    }
+
+    .campaign-details{
+      .campaign-constituency{
+        margin-bottom: 4px;
+        p{
+          font-size: 12px;
+          font-weight: 100;
+          color: #BDBDBD;
+          a{
+            font-weight: 400;
+            color: #000000;
+          }
+        }
+      }
+      .campaign-category{
+        margin-bottom: 2px;
+        p{
+          font-size: 8px;
+          font-weight: 100;
+          color: #BDBDBD;
+          a{
+            font-weight: 400;
+            color: #000;
+          }
+        }
+      }
+      .campaign-date{
+        p{
+          font-size: 6px;
+          font-weight: 100;
+          color: #BDBDBD;
+          span{
+            font-weight: 400;
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
