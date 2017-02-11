@@ -1,9 +1,0 @@
-{
-  "Admin": {
-  "secret": "THISISMYSECRET",
-  "Admin": {
-    "username": "breadbutteradmin",
-    "email": "breadbutter@admin.com",
-    "password": "testpassword"
-  }
-}
